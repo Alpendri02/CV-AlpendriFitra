@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alpendri — Portfolio</title>
+  <meta name="description" content="Portfolio modern kreatif — Frontend Developer & Creative Coder" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a;
+      --card:#0b1220;
+      --muted:rgba(255,255,255,0.65);
+      --glass: rgba(255,255,255,0.04);
+      --accent1: #7c3aed; /* purple */
+      --accent2: #06b6d4; /* cyan */
+      --accent3: #ff6b6b; /* coral */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 6%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(6,182,212,0.08), transparent 8%),
+                  var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:2rem;
+    }
+
+    .container{max-width:1100px;margin:0 auto}
+
+    /* Header */
+    .hero{
+      display:grid;grid-template-columns:1fr;gap:1.2rem;align-items:center;margin-bottom:1.6rem
+    }
+    @media(min-width:880px){.hero{grid-template-columns:360px 1fr}}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04);
+    }
+
+    .profile{
+      display:flex;gap:16px;align-items:center
+    }
+    .avatar{
+      width:96px;height:96px;border-radius:18px;flex:0 0 96px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;color:white;box-shadow:0 8px 30px rgba(124,58,237,0.18);
+    }
+    .info h1{font-size:20px;margin:0 0 6px 0}
+    .info p{margin:0;color:var(--muted)}
+
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent2),var(--accent1));font-weight:600;color:#051023;margin-top:10px}
+
+    /* Intro section */
+    .intro{margin-top:12px;line-height:1.6}
+
+    /* Actions */
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#031023}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* Right column */
+    .stats{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}
+    .stat{background:var(--glass);padding:10px;border-radius:10px;font-size:14px}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:1fr;gap:14px;margin-top:1rem}
+    @media(min-width:880px){.projects{grid-template-columns:repeat(2,1fr)}}
+
+    .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);transition:transform .35s cubic-bezier(.2,.9,.3,1),box-shadow .35s;position:relative;overflow:hidden}
+    .project-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+
+    .project-title{font-weight:700;margin-bottom:6px}
+    .project-desc{color:var(--muted);font-size:14px;margin-bottom:10px}
+    .tech{display:flex;gap:8px;flex-wrap:wrap}
+    .tech span{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px}
+
+    /* Floating gradient accent */
+    .accent-circle{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:40px;filter:blur(40px);opacity:0.6;background:linear-gradient(90deg,var(--accent3),var(--accent1));transform:rotate(25deg);pointer-events:none}
+
+    /* Timeline / experience */
+    .experience{margin-top:1rem}
+    .job{display:flex;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .job .role{font-weight:700}
+    .job .period{color:var(--muted);font-size:13px}
+
+    /* Contact */
+    .contact-card{display:flex;flex-direction:column;gap:8px}
+    .contact-card input, .contact-card textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:10px;color:inherit}
+
+    /* Footer */
+    footer{text-align:center;color:var(--muted);margin-top:2rem}
+
+    /* small animation utilities */
+    [data-reveal]{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+    [data-reveal].is-visible{opacity:1;transform:none}
+
+    /* link styles */
+    a{color:inherit;text-decoration:none}
+    .link{color:var(--accent2);font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <!-- Left column: profile summary -->
+      <div class="card" data-reveal>
+        <div class="profile">
+          <div class="avatar" id="avatar">AF</div>
+          <div class="info">
+            <h1 id="fullName">Alpendri Fitra R.</h1>
+            <p id="tagline">Frontend Developer • Creative Coder</p>
+            <div class="badge">Modern Creative Portfolio</div>
+            <div class="stats" style="margin-top:10px">
+              <div class="stat">Location: Padang</div>
+              <div class="stat">Email: <a class="link" href="mailto:alpendri@example.com">alpendri@example.com</a></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="intro" style="margin-top:14px;color:var(--muted)">Saya membuat antarmuka web yang estetis, cepat, dan mudah digunakan — menggabungkan desain visual yang kuat dengan kode yang bersih. Senang bekerja pada proyek yang menantang dan kolaboratif.</p>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="downloadPDF()">Download CV</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('projects')">Lihat Proyek</button>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">Keterampilan utama:</div>
+        <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:6px 10px;border-radius:999px;color:#021426;font-weight:700;font-size:13px">HTML</span>
+          <span style="background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px">CSS</span>
+          <span style="background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px">JavaScript</span>
+          <span style="background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px">React</span>
+        </div>
+      </div>
+
+      <!-- Right column: projects + experience -->
+      <div>
+        <div class="card" data-reveal>
+          <div style="position:relative;overflow:hidden">
+            <div class="accent-circle" aria-hidden="true"></div>
+            <h2 style="margin:0 0 8px">Proyek Terpilih</h2>
+            <p style="margin:0 0 12px;color:var(--muted);font-size:14px">Berikut beberapa proyek yang menonjol — klik untuk melihat detail.</p>
+
+            <div class="projects" id="projects"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px" data-reveal>
+          <h2 style="margin-bottom:10px">Pengalaman</h2>
+          <div class="experience">
+            <div class="job">
+              <div>
+                <div class="role">Frontend Developer — PT. Contoh</div>
+                <div class="period">Jan 2023 — Sekarang</div>
+                <div style="color:var(--muted);margin-top:6px">Bertanggung jawab atas pengembangan UI, optimasi performa, dan penulisan dokumentasi.</div>
+              </div>
+            </div>
+            <div class="job" style="margin-top:8px">
+              <div>
+                <div class="role">UI Engineer — Freelancer</div>
+                <div class="period">2021 — 2022</div>
+                <div style="color:var(--muted);margin-top:6px">Membangun landing page dan toko online dengan fokus mobile-first.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Contact + more projects (full width) -->
+    <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px">
+      <div class="card" id="projects-section" data-reveal>
+        <h2 id="projects">Semua Proyek</h2>
+        <div style="margin-top:12px;display:grid;grid-template-columns:1fr;gap:12px" id="all-projects"></div>
+      </div>
+
+      <div class="card" data-reveal>
+        <h2>Hubungi Saya</h2>
+        <p style="color:var(--muted);margin-bottom:10px">Ingin bekerja sama? Isi formulir singkat berikut atau kirim email langsung.</p>
+        <form class="contact-card" onsubmit="handleContact(event)">
+          <input id="c-name" placeholder="Nama" required />
+          <input id="c-email" placeholder="Email" type="email" required />
+          <textarea id="c-message" rows="4" placeholder="Pesan" required></textarea>
+          <div style="display:flex;gap:8px">
+            <button type="submit" class="btn btn-primary">Kirim</button>
+            <button type="button" class="btn btn-ghost" onclick="location.href='mailto:alpendri@example.com'">Email langsung</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>© <span id="year"></span> Alpendri Fitra R. — Frontend Developer</footer>
+  </div>
+
+  <script>
+    // Data: name, tagline, and example projects (user asked all three included)
+    const profile = {
+      name: 'Alpendri Fitra R.',
+      tagline: 'Frontend Developer • Creative Coder',
+      email: 'alpendri@example.com',
+      location: 'Padang, Indonesia',
+      projects: [
+        {
+          title: 'Dashboard Analitik — Realtime Insights',
+          desc: 'Dashboard interaktif untuk memvisualisasikan metrik bisnis secara realtime, dilengkapi filter dan export CSV.',
+          tech: ['React', 'Chart.js', 'Tailwind'],
+          link: '#'
+        },
+        {
+          title: 'Portfolio CMS — Headless Portfolio',
+          desc: 'CMS ringan untuk mengelola portofolio dan blog, dengan editor WYSIWYG dan integrasi deployment otomatis.',
+          tech: ['Node.js', 'Express', 'SQLite'],
+          link: '#'
+        },
+        {
+          title: 'Landing Page Produk — High Conversion',
+          desc: 'Landing page responsif dengan micro-interactions dan A/B testing untuk optimasi konversi.',
+          tech: ['HTML', 'GSAP', 'A/B Testing'],
+          link: '#'
+        }
+      ]
+    }
+
+    // init profile text
+    document.getElementById('fullName').textContent = profile.name;
+    document.getElementById('tagline').textContent = profile.tagline;
+    document.querySelector('.stats .stat:nth-child(2)').innerHTML = `Email: <a class='link' href='mailto:${profile.email}'>${profile.email}</a>`;
+    document.getElementById('avatar').textContent = profile.name.split(' ').map(n=>n[0]).slice(0,2).join('');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // render project cards (compact)
+    const projectsEl = document.getElementById('projects');
+    profile.projects.forEach(p=>{
+      const card = document.createElement('div');
+      card.className='project-card';
+      card.innerHTML = `
+        <div class="project-title">${p.title}</div>
+        <div class="project-desc">${p.desc}</div>
+        <div class="tech">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+          <a class='link' href='${p.link}' target='_blank'>Lihat Proyek →</a>
+          <div style='font-size:12px;color:var(--muted)'>2024</div>
+        </div>
+      `;
+      projectsEl.appendChild(card);
+    });
+
+    // render full project list
+    const allProjects = document.getElementById('all-projects');
+    profile.projects.forEach(p=>{
+      const el = document.createElement('div');
+      el.className='project-card';
+      el.innerHTML = `
+        <div style='display:flex;justify-content:space-between;align-items:flex-start;gap:12px'>
+          <div>
+            <div style='font-weight:800'>${p.title}</div>
+            <div style='color:var(--muted);margin-top:6px'>${p.desc}</div>
+            <div class='tech' style='margin-top:8px'>${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>
+          </div>
+          <div style='text-align:right'>
+            <div style='font-weight:700;color:var(--accent2)'>Case Study</div>
+            <a class='link' href='${p.link}' style='display:block;margin-top:10px'>Lihat →</a>
+          </div>
+        </div>
+      `;
+      allProjects.appendChild(el);
+    });
+
+    // simple contact handler (demo)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const msg = document.getElementById('c-message').value.trim();
+      if(!name||!email||!msg){alert('Mohon lengkapi form.');return}
+      alert('Terima kasih, '+name+"! Pesanmu telah diterima (demo). Saya akan menghubungi lewat email: "+email);
+      e.target.reset();
+    }
+
+    // utility: scroll to section
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // download as PDF (simple print fallback)
+    function downloadPDF(){
+      // For a proper PDF generator, integrate html2pdf or server-side. Here we will trigger print.
+      window.print();
+    }
+
+    // scroll reveal: intersection observer
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('is-visible');}
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+    // add small tilt on hover for project cards
+    document.addEventListener('mousemove', (e)=>{
+      document.querySelectorAll('.project-card').forEach(card=>{
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width/2;
+        const y = e.clientY - rect.top - rect.height/2;
+        const dx = (x/rect.width)*6; const dy = (y/rect.height)*6;
+        card.style.transform = `translate3d(0,0,0) rotateX(${ -dy }deg) rotateY(${ dx }deg)`;
+        card.style.transition = 'transform 0.2s ease';
+      });
+    });
+    // reset transform when mouse leaves card area
+    document.querySelectorAll('.project-card').forEach(card=>{
+      card.addEventListener('mouseleave', ()=>{card.style.transform='none';});
+    });
+  </script>
+</body>
+</html>
